@@ -8,10 +8,10 @@ var albumPicasso = {
     { title: 'Blue', duration: '4:26' },
     { title: 'Green', duration: '3:14' },
     { title: 'Red', duration: '5:01' },
-    { title: 'Pink', duration: '3:21' },
-    { title: 'Magenta', duration: '2:15' }
+    { title: 'Pink', duration: '3:21'},
+    { title: 'Magenta', duration: '2:15'}
   ]
-};
+ };
 
 var albumMarconi = {
   title: 'The Telephone',
@@ -47,17 +47,17 @@ var albumTechnique = {
   ]
 }
 
-var CreateSongRow = function(songNumber, songName, songLength) {
+var createSongRow = function(songNumber, songName, songLength) {
   var template =
-      '<tr class="album-view-song-item">'
-    + ' <td class="gon-item-number">' + songNumber + '</td>'
-    + '  <td class="song-item-title">' + songName + '</td>'
-    + '  <td class="song-item-duration">' + songLength + '</td>'
-    + '</tr>'
-    ;
-  
+    '<tr class="album-view-song-item">'
+  + '  <td class="song-item-number">' + songNumber + '</td>'
+  + '  <td class="song-item-title">' + songName + '</td>'
+  + '  <td class="song-item-duration">' + songLength + '</td>'
+  + '</tr>'
+  ;
+
   return template;
-}
+};
 
 var albumTitle = document.getElementsByClassName('album-view-title')[0];
 var albumArtist = document.getElementsByClassName('album-view-artist')[0];
@@ -76,11 +76,11 @@ var setCurrentAlbum = function(album) {
   for (var i = 0; i < album.songs.length; i++) {
     albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
   }
- };
+};
  
- window.onload = function() {
+window.onload = function() {
   setCurrentAlbum(albumPicasso);
-   
+  
   var albs = [albumPicasso, albumMarconi, albumTechnique];
   var j = 0;
   albumTitle.addEventListener("click", function(e) {
@@ -90,4 +90,4 @@ var setCurrentAlbum = function(album) {
       j = 0;
     }
   });
- };
+};
