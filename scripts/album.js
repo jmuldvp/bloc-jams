@@ -28,6 +28,25 @@ var albumMarconi = {
   ]
 };
 
+var albumTechnique = {
+  title: 'Technique',
+  artist: 'New Order',
+  label: 'Factory',
+  year: '1989',
+  albumArtUrl: 'assets/images/album_covers/02.png',
+  songs: [
+    { title: 'Fine Time', duration: '4:42' },
+    { title: 'All the Way', duration: '3:22' },
+    { title: 'Love Less', duration: '2:58' },
+    { title: 'Round & Round', duration: '4:29' },
+    { title: 'Guilty Partner', duration: '4:44' },
+    { title: 'Run', duration: '4:29' },
+    { title: 'Mr. Disco', duration: '4:20' },
+    { title: 'Vanishing Point', duration: '5:15' },
+    { title: 'Dream Attack', duration: '5:13' }
+  ]
+}
+
 var CreateSongRow = function(songNumber, songName, songLength) {
   var template =
       '<tr class="album-view-song-item">'
@@ -40,13 +59,13 @@ var CreateSongRow = function(songNumber, songName, songLength) {
   return template;
 }
 
-var setCurrentAlbum = function(album) {
-  var albumTitle = document.getElementsByClassName('album-view-title')[0];
-  var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-  var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-  var albumImage = document.getElementsByClassName('album-cover-art')[0];
-  var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
+var setCurrentAlbum = function(album) {
   albumTitle.firstChild.nodeValue = album.title;
   albumArtist.firstChild.nodeValue = album.artist;
   albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -61,4 +80,14 @@ var setCurrentAlbum = function(album) {
  
  window.onload = function() {
   setCurrentAlbum(albumPicasso);
+   
+  var albs = [albumPicasso, albumMarconi, albumTechnique];
+  var j = 0;
+  albumTitle.addEventListener("click", function(e) {
+    setCurrentAlbum(albs[i]);
+    j++;
+    if (j === 2) {
+      j = 0;
+    }
+  });
  };
