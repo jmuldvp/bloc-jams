@@ -28,7 +28,7 @@ var albumMarconi = {
   ]
 };
 
-var CreateSongRow = function(songNumber, songName, songLength) {
+var createSongRow = function(songNumber, songName, songLength) {
   var template =
       '<tr class="album-view-song-item">'
     + ' <td class="gon-item-number">' + songNumber + '</td>'
