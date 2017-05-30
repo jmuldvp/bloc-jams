@@ -84,9 +84,9 @@ window.onload = function() {
   var albs = [albumPicasso, albumMarconi, albumTechnique];
   var j = 0;
   albumTitle.addEventListener("click", function(e) {
-    setCurrentAlbum(albs[i]);
+    setCurrentAlbum(albs[j]);
     j++;
-    if (j === 2) {
+    if (j === 3) {
       j = 0;
     }
   });
