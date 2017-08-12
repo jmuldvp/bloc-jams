@@ -83,7 +83,7 @@ var setCurrentAlbum = function(album) {
   $albumSongList.empty();
 
   for (var i = 0; i < album.songs.length; i++) {
-    var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+    var $newRow = createSongRow(i + 1, album.songs[i].title, filterTimeCode(album.songs[i].duration));
     $albumSongList.append($newRow);
   }
 };
@@ -217,6 +217,11 @@ var updatePlayerBarSong = function() {
   $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
 
   $('.main-controls .play-pause').html(playerBarPauseButton);
+  setTotalTimeInPlayerBar(filterTimeCode(currentSongFromAlbum.duration));
+};
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+  $('.total-time').text(totalTime);
 };
 
 var updateSeekBarWhileSongPlays = function() {
@@ -226,7 +231,23 @@ var updateSeekBarWhileSongPlays = function() {
       var $seekBar = $('.seek-control .seek-bar');
 
       updateSeekPercentage($seekBar, seekBarFillRatio);
+      setCurrentTimeInPlayerBar(filterTimeCode(this.getTime()));
     });
+  }
+};
+
+var setCurrentTimeInPlayerBar = function(currentTime) {
+  // console.log(Math.floor(currentTime % 60));
+  $('.current-time').text(currentTime);
+};
+
+var filterTimeCode = function(timeInSeconds) {
+  var secs = Math.floor(parseFloat(timeInSeconds) % 60);
+  var mins = Math.floor(parseFloat(timeInSeconds) / 60);
+  if (secs < 10) {
+    return mins + ':0' + secs;
+  } else {
+    return mins + ':' + secs;
   }
 };
 
